@@ -68,7 +68,7 @@ public class SeckillController {
             result = new SeckillResult<>(true, exposer);
         }catch (Exception e){
             e.printStackTrace();
-            result = new SeckillResult<>(false,e.printStackTrace());
+            result = new SeckillResult<>(false, e.getMessage());
         }
         return result;
     }
@@ -96,7 +96,7 @@ public class SeckillController {
             return new SeckillResult<>(false,seckillExecution);
         }catch (SeckillException e3){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId,SeckillStatEnum.INNER_ERROR);
-            return new SeckillResult<>(seckillId,seckillExecution);
+            return new SeckillResult<>(false,seckillExecution);
         }
 
         }
@@ -111,11 +111,5 @@ public class SeckillController {
         LocalDateTime time = LocalDateTime.now();
         return new SeckillResult<>(true,time);
     }
-
-}
-
-
-
-
 
 }
