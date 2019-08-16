@@ -40,6 +40,7 @@ public class SeckillController {
 
     @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)
     public String detail(@PathVariable("seckillId") Long seckillId, Model model){
+
         if (seckillId == null){
             return "redirect:/seckill/list";
         }
@@ -82,6 +83,7 @@ public class SeckillController {
     @RequestMapping(value = "/{seckillId}/{md5}/execution", method = RequestMethod.POST)
     @ResponseBody
     public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") long seckillId,@PathVariable("md5") String md5,@PathVariable(value = "userphone",required = false) Long userphone){
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (userphone == null){
             return new SeckillResult<>(false,"没有注册");
         }

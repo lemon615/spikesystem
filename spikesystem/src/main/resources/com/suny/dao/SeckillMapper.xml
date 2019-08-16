@@ -8,8 +8,8 @@
         <result property="number" column="number" javaType="Integer" jdbcType="VARCHAR"/>
         <result property="startTime" column="start_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
         <result property="endTime" column="end_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
-        <result property="createTme" column="create_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
-    </resultMap>i
+        <result property="createTime" column="create_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
     <update id="reduceNumber">
         UPDATE seckill
         SET number = number - 1
@@ -51,3 +51,13 @@
         )
     </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+

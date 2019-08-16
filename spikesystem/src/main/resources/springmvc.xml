@@ -45,6 +45,6 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!--  对上传文件解析 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--  对上传文件解析
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
 </beans>
