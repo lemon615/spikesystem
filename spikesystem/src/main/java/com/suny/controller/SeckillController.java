@@ -7,10 +7,7 @@ import com.suny.interfaces.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.jws.WebParam;
 import java.time.LocalDateTime;
@@ -77,18 +74,18 @@ public class SeckillController {
     /**
      * 用户执行秒杀，页面点击相应的秒杀链接，进入后获取对应的参数进行判断，返回对应的json结果
      * @param md5 j加密值
-     * @param userphone 参与秒杀的用户手机号码，当作账号密码使用
+     * @param userPhone 参与秒杀的用户手机号码，当作账号密码使用
      * @return 返回json数据，作为秒杀结果
      */
     @RequestMapping(value = "/{seckillId}/{md5}/execution", method = RequestMethod.POST)
     @ResponseBody
-    public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") long seckillId,@PathVariable("md5") String md5,@PathVariable(value = "userphone",required = false) Long userphone){
+    public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") long seckillId,@PathVariable("md5") String md5,@CookieValue(value = "userPhone",required = false) Long userPhone){
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        if (userphone == null){
+        if (userPhone == null){
             return new SeckillResult<>(false,"没有注册");
         }
         try{
-            SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId,userphone,md5);
+            SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId,userPhone,md5);
             return new SeckillResult<>(true,seckillExecution);
         }catch (RepeatKillException e1){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId, SeckillStatEnum.REPEAT_KILL);

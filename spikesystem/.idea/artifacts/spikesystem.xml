@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spikesystem">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="spikesystem.war" />
+  </artifact>
+</component>

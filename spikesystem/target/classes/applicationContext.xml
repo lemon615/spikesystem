@@ -10,6 +10,9 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.suny" />
+
     <!-- 开启spring注解配置-->
     <context:annotation-config/>
     <context:component-scan base-package="com"/>
@@ -51,6 +54,9 @@
         <property name="basePackage" value="com.suny.dao"/>
     </bean>
 
-
+    <bean id="redisDao" class="com.suny.dao.cache.RedisDao">
+        <constructor-arg index="0" value="localhost"/>
+        <constructor-arg index="1" value="6379"/>
+    </bean>
 
 </beans>

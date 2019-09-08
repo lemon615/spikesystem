@@ -2,6 +2,7 @@ package com.suny.interfaces;
 
 import com.suny.dao.SeckillMapper;
 import com.suny.dao.SuccesskilledMapper;
+import com.suny.dao.cache.RedisDao;
 import com.suny.dto.*;
 import com.suny.entity.Seckill;
 import com.suny.entity.SuccessKilled;
@@ -22,6 +23,8 @@ public class SeckillServiceImpl implements SeckillService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private final  String salt = "thisIsAsAltValue";
 
+    @Autowired
+    private RedisDao redisDao;
     @Autowired
     private SeckillMapper seckillMapper;
     @Autowired
@@ -46,10 +49,16 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     public Exposer exportSeckillUrl(long seckillId) {
-        Seckill seckill = seckillMapper.queryById(seckillId);
-        if (seckill == null){
-            logger.warn("查询的id不存在");
-            return new Exposer(false,seckillId);
+
+        //先从redis中获取秒杀商品信息，如果没有缓存再连接数据库，减少并发压力
+        Seckill seckill = redisDao.getSeckill(seckillId);
+        if(null == seckill){
+            seckill = seckillMapper.queryById(seckillId);
+            redisDao.putSeckill(seckill);
+            if(null == seckill){
+                logger.warn("查询的id不存在");
+                return new Exposer(false,seckillId);
+            }
         }
 
         LocalDateTime startTime = seckill.getStartTime();
