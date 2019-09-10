@@ -86,16 +86,16 @@ public class SeckillController {
         }
         try{
             SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId,userPhone,md5);
-            return new SeckillResult<>(true,seckillExecution);
+            return new SeckillResult<SeckillExecution>(true,seckillExecution);
         }catch (RepeatKillException e1){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId, SeckillStatEnum.REPEAT_KILL);
-            return new SeckillResult<>(false,seckillExecution);
+            return new SeckillResult<SeckillExecution>(false,seckillExecution);
         }catch (SeckillCloseException e2){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId,SeckillStatEnum.END);
-            return new SeckillResult<>(false,seckillExecution);
+            return new SeckillResult<SeckillExecution>(false,seckillExecution);
         }catch (SeckillException e3){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId,SeckillStatEnum.INNER_ERROR);
-            return new SeckillResult<>(false,seckillExecution);
+            return new SeckillResult<SeckillExecution>(false,seckillExecution);
         }
 
         }

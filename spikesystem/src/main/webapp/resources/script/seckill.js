@@ -97,7 +97,8 @@ var seckill = {
                             console.log("秒殺結果：" + result);
                             var killResult = result['data'];
                             var state = killResult['state'];
-                            var stateInfo = killResult['stateInfo'];
+                            console.log("秒殺state：" + state);
+                            var stateInfo = killResult['stateinfo'];
                             console.log("秒杀状态" + stateInfo);
                             // 显示秒杀结果
                             mode.html('<span class="label label-success">' + stateInfo + '</span>');
