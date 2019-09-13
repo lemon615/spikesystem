@@ -1,8 +1,7 @@
-package com.suny.interfaces;
+package com.suny.service.interfaces;
 
 import com.suny.dto.*;
 import com.suny.entity.Seckill;
-import sun.security.provider.MD5;
 
 import java.util.List;
 
@@ -35,4 +34,14 @@ public interface SeckillService {
      * @return 根据不同结果返回不同的状态信息
      */
     SeckillExecution executeSeckill(long seckillId, long userPhone, String md5) throws SeckillException, RepeatKillException, SeckillCloseException;
+
+    /**
+     * 执行秒杀存储过程操作失败时返回异常
+     * @param seckillId 秒杀商品id
+     * @param userPhone 用户手机号
+     * @param md5 md5加密值
+     * @return 根据不同结果返回不同的状态信息
+     */
+    SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5) ;
+
 }

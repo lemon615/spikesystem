@@ -42,7 +42,7 @@
     </select>
 
     <!--调用储存过程-->
-    <select id="killByProcedure" statementType="CALLABLE">
+    <select id="executeSeckillProcedure" statementType="CALLABLE">
         CALL execute_seckill(
                 #{seckillId,jdbcType=BIGINT,mode=IN},
                 #{phone,jdbcType=BIGINT,mode=IN},
@@ -50,6 +50,7 @@
                 #{result,jdbcType=INTEGER,mode=OUT}
         )
     </select>
+
 </mapper>
 
 

@@ -1,10 +1,11 @@
-package com.suny.interfaces;
+package com.suny.service;
 
 import com.suny.dto.Exposer;
 import com.suny.dto.RepeatKillException;
 import com.suny.dto.SeckillCloseException;
 import com.suny.dto.SeckillExecution;
 import com.suny.entity.Seckill;
+import com.suny.service.interfaces.SeckillService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,8 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

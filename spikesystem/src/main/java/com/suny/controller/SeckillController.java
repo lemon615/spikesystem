@@ -3,13 +3,12 @@ package com.suny.controller;
 import com.suny.dto.*;
 import com.suny.entity.Seckill;
 import com.suny.enumerate.SeckillStatEnum;
-import com.suny.interfaces.SeckillService;
+import com.suny.service.interfaces.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -85,7 +84,7 @@ public class SeckillController {
             return new SeckillResult<>(false,"没有注册");
         }
         try{
-            SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId,userPhone,md5);
+            SeckillExecution seckillExecution = seckillService.executeSeckillProcedure(seckillId,userPhone,md5);
             return new SeckillResult<SeckillExecution>(true,seckillExecution);
         }catch (RepeatKillException e1){
             SeckillExecution seckillExecution = new SeckillExecution(seckillId, SeckillStatEnum.REPEAT_KILL);

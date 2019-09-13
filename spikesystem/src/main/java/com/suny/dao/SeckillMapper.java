@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public interface SeckillMapper {
     /**
@@ -29,5 +30,11 @@ public interface SeckillMapper {
      * @return 符合偏移量查询出来的商品个数
      */
     List<Seckill> queryAll(@Param("offset") int offset,@Param("limit") int limit);
+
+    /**
+     * 执行秒杀的存储过程
+     * @param paramMap 存储过程参数
+     */
+    void executeSeckillProcedure(Map<String,Object> paramMap);
 
 }
